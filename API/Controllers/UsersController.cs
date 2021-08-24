@@ -27,5 +27,19 @@ namespace API.Controllers
         {
             return await _context.Users.FindAsync(id);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> DeleteUser(int id)
+        {
+            if(!(await _context.Users.AnyAsync(x => x.Id == id))) return false;
+            
+            var user = await _context.Users.FindAsync(id);
+            
+            _context.Users.Remove(user);
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }
