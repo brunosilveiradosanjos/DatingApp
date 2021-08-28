@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,12 +17,15 @@ namespace API.Controllers
             _context = context;
         }
 
+
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
@@ -31,10 +35,10 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<bool> DeleteUser(int id)
         {
-            if(!(await _context.Users.AnyAsync(x => x.Id == id))) return false;
-            
+            if (!(await _context.Users.AnyAsync(x => x.Id == id))) return false;
+
             var user = await _context.Users.FindAsync(id);
-            
+
             _context.Users.Remove(user);
 
             await _context.SaveChangesAsync();
