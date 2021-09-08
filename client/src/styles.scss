@@ -1,7 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Importing bootswatch variables. */
+@import "~bootswatch/dist/united/variables";
+
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
 @import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+/* Importing bootswatch. */
+@import "~bootswatch/dist/united/bootswatch";
+
+/* Regular style toast */
+@import "~ngx-toastr/toastr";
+// @import "~ngx-toastr/toastr-bs4-alert";
+
+/* Font awesome style  */
+@import "~font-awesome/css/font-awesome.css";
