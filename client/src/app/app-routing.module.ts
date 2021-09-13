@@ -22,7 +22,7 @@ const routes: Routes = [
     ]
   },
   { path: 'errors', component: TestErrorsComponent },
-  { path: '**', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] }
+  { path: '**', component: HomeComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
